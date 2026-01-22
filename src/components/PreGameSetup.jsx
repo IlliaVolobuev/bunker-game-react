@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PreGameSetup({ state }) {
-  const { setScreen, gameState, setGameState } = state;
+  const { gameState, setGameState } = state;
+  const navigate = useNavigate();
 
   // Локальные состояния для формы
-  const [numPlayers, setNumPlayers] = useState(2);
-  const [playerNames, setPlayerNames] = useState(["", ""]);
-  const [numFacts, setNumFacts] = useState(3);
+  const [numPlayers, setNumPlayers] = useState(4);
+  const [playerNames, setPlayerNames] = useState(["", "", "", ""]);
+  const [numFacts, setNumFacts] = useState(4);
   const [discussionTime, setDiscussionTime] = useState(60); // в секундах
 
   // Обновление имени игрока
@@ -20,14 +22,16 @@ function PreGameSetup({ state }) {
   const addPlayer = () => {
     setPlayerNames([...playerNames, ""]);
     setNumPlayers(numPlayers + 1);
+    setNumFacts(numFacts + 1)
   };
 
   // Удаление игрока
   const removePlayer = (index) => {
-    if (numPlayers <= 2) return; // минимум 2 игрока
+    if (numPlayers <= 4) return; // минимум 2 игрока
     const newNames = playerNames.filter((_, i) => i !== index);
     setPlayerNames(newNames);
     setNumPlayers(numPlayers - 1);
+    setNumFacts(numFacts - 1)
   };
 
   const handleStartGame = () => {
@@ -47,7 +51,7 @@ function PreGameSetup({ state }) {
     }));
 
     // Переходим к следующему экрану
-    setScreen("playerFactsSetup");
+    navigate("/player-facts");
   };
 
   return (
@@ -74,15 +78,10 @@ function PreGameSetup({ state }) {
 
       <div className="settings">
         <label>
-          Количество фактов на игрока:
-          <input
-            type="number"
-            min="1"
-            value={numFacts}
-            onChange={(e) => setNumFacts(parseInt(e.target.value))}
-          />
+          Количество фактов на игрока: {numFacts} 
         </label>
-
+        <br></br>
+        <br></br>
         <label>
           Время обсуждения (сек):
           <input
@@ -95,7 +94,7 @@ function PreGameSetup({ state }) {
       </div>
 
       <button onClick={handleStartGame}>Начать игру</button>
-      <button onClick={() => setScreen("menu")}>Назад в меню</button>
+      <button onClick={() => navigate("/")}>Назад в меню</button>
     </div>
   );
 }

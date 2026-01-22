@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Settings({ state }) {
-  const { settings, setSettings, setScreen } = state;
+  const { settings, setSettings } = state;
+  const navigate = useNavigate();
 
   const handleSoundToggle = () => {
     setSettings({ ...settings, sound: !settings.sound });
@@ -57,7 +59,9 @@ function Settings({ state }) {
         </label>
       </div>
 
-      <button onClick={() => setScreen("menu")}>Назад в меню</button>
+      <button onClick={() => navigate("/")}>
+        Назад в меню
+      </button>
     </div>
   );
 }

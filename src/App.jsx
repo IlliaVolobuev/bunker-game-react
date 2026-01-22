@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Menu from "./components/Menu";
 import Settings from "./components/Settings";
 import AudioPlayer from "./components/AudioPlayer";
@@ -9,9 +11,6 @@ import Round from "./components/Round";
 import EndScreen from "./components/EndScreen";
 
 function App() {
-  // экран: menu, settings, story, preGame, playerFacts, round, end
-  const [screen, setScreen] = useState("menu");
-
   // глобальные настройки
   const [settings, setSettings] = useState({
     sound: true,
@@ -29,8 +28,6 @@ function App() {
   });
 
   const state = {
-    screen,
-    setScreen,
     settings,
     setSettings,
     gameState,
@@ -38,17 +35,19 @@ function App() {
   };
 
   return (
-    <div>
-      {screen === "menu" && <Menu state={state} />}
-      {screen === "settings" && <Settings state={state} />}
-      {screen === "story" && <StoryScreen state={state} />}
-      {screen === "preGameSetup" && <PreGameSetup state={state} />}
-      {screen === "playerFactsSetup" && <PlayerFactsSetup state={state} />}
-      {screen === "round" && <Round state={state} />}
-      {screen === "end" && <EndScreen state={state} />}
-
+    <Router>
       <AudioPlayer play={settings.sound} volume={settings.musicVolume} />
-    </div>
+
+      <Routes>
+        <Route path="/" element={<Menu state={state} />} />
+        <Route path="/settings" element={<Settings state={state} />} />
+        <Route path="/story" element={<StoryScreen state={state} />} />
+        <Route path="/pre-game" element={<PreGameSetup state={state} />} />
+        <Route path="/player-facts" element={<PlayerFactsSetup state={state} />} />
+        <Route path="/round" element={<Round state={state} />} />
+        <Route path="/end" element={<EndScreen state={state} />} />
+      </Routes>
+    </Router>
   );
 }
 

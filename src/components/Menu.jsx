@@ -1,17 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function Menu({ state }) {
-  const { setScreen } = state;
+function Menu() {
+  const navigate = useNavigate();
 
   return (
     <div className="menu-screen">
       <h1 className="menu-title">Бункер</h1>
       <div className="menu-buttons">
         {/* Кнопка Играть */}
-        <button onClick={() => setScreen("story")}>Играть</button>
+        <button onClick={() => navigate("/story")}>
+          Играть
+        </button>
 
         {/* Кнопка Настройки */}
-        <button onClick={() => setScreen("settings")}>Настройки</button>
+        <button onClick={() => navigate("/settings")}>
+          Настройки
+        </button>
       </div>
     </div>
   );

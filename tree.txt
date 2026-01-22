@@ -1,0 +1,27 @@
+.
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── public
+│   └── vite.svg
+├── README.md
+├── src
+│   ├── App.jsx
+│   ├── assets
+│   │   ├── music.mp3
+│   │   └── story.mp3
+│   ├── components
+│   │   ├── AudioPlayer.jsx
+│   │   ├── EndScreen.jsx
+│   │   ├── Menu.jsx
+│   │   ├── PlayerFactsSetup.jsx
+│   │   ├── PreGameSetup.jsx
+│   │   ├── Round.jsx
+│   │   ├── Settings.jsx
+│   │   └── StoryScreen.jsx
+│   ├── data
+│   │   └── data.js
+│   ├── main.jsx
+│   └── style.css
+└── vite.config.js

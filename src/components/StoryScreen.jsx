@@ -1,21 +1,28 @@
 import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import storyAudio from "../assets/story.mp3"; // <- импорт mp3 через ES-модуль
 
 function StoryScreen({ state }) {
-  const { setScreen } = state;
+  const { settings } = state; // если звук/громкость понадобятся
+  const navigate = useNavigate();
   const audioRef = useRef(null);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
-      audio.play().catch(err => console.log("Ошибка воспроизведения:", err));
+      // установка громкости
+      audio.volume = settings.musicVolume;
+      
+      if (settings.sound) {
+        audio.play().catch(err => console.log("Ошибка воспроизведения:", err));
+      }
 
       // Переход к предигровой настройке после окончания аудио
       audio.onended = () => {
-        setScreen("preGameSetup");
+        navigate("/pre-game");
       };
     }
-  }, [setScreen]);
+  }, [navigate, settings]);
 
   return (
     <div className="story-screen">
