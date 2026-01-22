@@ -1,0 +1,92 @@
+/* Общие стили для всего приложения */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #3e3e5e);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: #ff7f50;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #ff5733;
+}
+
+h1, h2, h3 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Экраны */
+.menu-screen,
+.settings-screen,
+.story-screen,
+.player-facts-setup-screen,
+.round-screen,
+.end-screen {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Настройки */
+.settings-screen label {
+  display: block;
+  margin: 10px 0;
+}
+
+.settings-screen select,
+.settings-screen input[type="range"] {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Список фактов */
+.round-screen ul li {
+  background: rgba(255, 255, 255, 0.1);
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.round-screen ul li:hover {
+  background: rgba(255, 127, 80, 0.4);
+}
+
+/* Раскрытые факты */
+.round-screen h3 + ul li {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: default;
+}
+
+/* Прогресс и контейнеры */
+.audio-player {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
